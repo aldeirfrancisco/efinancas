@@ -1,18 +1,18 @@
 import express from 'express';
-import routes from './routes'; // importando rotas para configurar no servidor  express
+import routes from './routes';
 
 class App {
-  constructor() { // construtor
+  constructor() {
     this.server = express();
     this.middlewares();
     this.routes();
   }
-  // minha aplicação está pronta para receber requisição  com json, responsavel pelos aquivo json
-  middlewares() { // metodo
+
+  middlewares() {
     this.server.use(express.json());
   }
 
-  routes() { //
+  routes() {
     this.server.use(routes);
   }
 }
