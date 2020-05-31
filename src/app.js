@@ -7,9 +7,9 @@ class App {
     this.middlewares();
     this.routes();
   }
-
+  // minha aplicação está pronta para receber requisição  com json, responsavel pelos aquivo json
   middlewares() { // metodo
-    this.server.use(express.json()); // minha aplicação está pronta para receber requisição  com json, responsavel pelos aquivo json
+    this.server.use(express.json());
   }
 
   routes() { //
