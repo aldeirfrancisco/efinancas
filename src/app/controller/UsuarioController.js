@@ -12,8 +12,9 @@ class UsuarioController {
         error: 'Usuario com o email informado já existe',
       });
     }
-    const novoUsuario = await Usuario.create(request.body);
-    return response.json(novoUsuario);
+    const { nome, email } = await Usuario.create(request.body);
+    return response.json({ nome, email });
   }
 }
+
 export default new UsuarioController();
