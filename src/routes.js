@@ -9,7 +9,11 @@ import authInterceptor from './app/middlewares/authInterceptor';
 const routes = new Router();
 routes.post('/awth', AutenticadorController.auth);
 routes.use(authInterceptor); // aqui para baixo precissa de token
+
 routes.post('/usuarios', UsuarioController.inclui);
+routes.get('/usuarios', UsuarioController.listar);
+
 routes.post('/pessoas', PessoaController.inclui);
+
 routes.post('/Lancamento', LancamentoController.incluir);
 export default routes;
