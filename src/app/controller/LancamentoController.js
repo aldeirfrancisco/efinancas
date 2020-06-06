@@ -21,6 +21,7 @@ class LancamentoController {
       include: [
         {
           model: Pessoa,
+          as: 'pessoa',
           attributes: ['id', 'nome', 'cpfcnpj', 'telefone'],
         },
       ],
