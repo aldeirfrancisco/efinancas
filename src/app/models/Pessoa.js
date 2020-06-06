@@ -15,9 +15,5 @@ class Pessoa extends Model {
       }
     );
   }
-
-  static associacao(model) {
-    this.hasMany(model.Lancamento, { foreignKey: 'id_pessoa' });
-  }
 }
 export default Pessoa;

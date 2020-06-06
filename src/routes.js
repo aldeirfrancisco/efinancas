@@ -18,4 +18,5 @@ routes.post('/pessoas', PessoaController.inclui);
 routes.get('/pessoas', PessoaController.listar);
 
 routes.post('/lancamento', LancamentoController.incluir);
+routes.get('/lancamento', LancamentoController.listar);
 export default routes;
