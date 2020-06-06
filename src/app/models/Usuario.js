@@ -22,5 +22,9 @@ class Usuario extends Model {
     });
     return this;
   }
+
+  validaSenha(senha) {
+    return bcrypt.compare(senha, this.senha_hash);
+  }
 }
 export default Usuario;
