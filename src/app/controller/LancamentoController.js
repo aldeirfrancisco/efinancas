@@ -1,8 +1,18 @@
+import * as yup from 'yup';
 import Lancamento from '../models/Lancamento';
 import Pessoa from '../models/Pessoa';
 
+const validaSchema = yup.object().shape({
+  descricao: yup.string().required('O campo descricão é obrigatório '),
+  categoria: yup.string().required('O campo categoria é obrigatorio'),
+  situacao: yup.string().required('O campo situação é obrigatorio'),
+  valor: yup.number().required('O valor é obrigatorio'),
+});
 class LancamentoController {
   async incluir(req, res) {
+    validaSchema.validate(req.body).catch((err) => {
+      return res.status(400).json({ error: `${err.errors}` });
+    });
     const lancamento = await Lancamento.create(req.body);
     return res.json(lancamento);
   }
