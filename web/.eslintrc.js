@@ -19,6 +19,7 @@ module.exports = {
     },
     plugins: ["react", "prettier"],
     rules: {
+      "linebreak-style": 0,
       "react/prefer-stateless-function": "off",
       "react/prop-types": "off",
       "react/forbid-prop-types": "off",
