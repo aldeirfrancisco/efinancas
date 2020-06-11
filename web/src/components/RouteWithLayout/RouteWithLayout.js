@@ -6,7 +6,7 @@ import { Main as MainLayout, Minimal as MinimalLayout } from '../../layouts';
 const RouteWithLayout = (props) => {
     const { isPrivate, component: Component, ...rest } = props;
 
-    const isUsuarioLogado = true;
+    const isUsuarioLogado = false;
 
     const Layout = isUsuarioLogado ? MainLayout : MinimalLayout;
 

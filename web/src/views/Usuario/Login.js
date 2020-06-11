@@ -1,6 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
+
+import { ErrorMessage, Formik, Form as FormikForm, Field } from 'formik';
+import * as yup from 'yup';
+
 import { Button, TextField, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -39,48 +43,72 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const SignIn = (props) => {
+const validaCampos = yup.object().shape({
+    email: yup
+        .string()
+        .email('O Email  é invalido')
+        .required('O email é obrigatório'),
+    senha: yup.string().required('Senha é obrigatória'),
+});
+
+const SignIn = () => {
     const classes = useStyles();
     return (
         <div className={classes.content}>
             <div className={classes.contentBody}>
-                <form className={classes.form}>
-                    <Typography
-                        align="center"
-                        className={classes.title}
-                        color="textSecondary"
-                        variant="h2"
-                    >
-                        Seja bem vindo!
-                    </Typography>
-                    <TextField
-                        className={classes.textField}
-                        fullWidth
-                        label="Seu email"
-                        name="email"
-                        onChange
-                        type="text"
-                        variant="outlined"
-                    />
-                    <TextField
-                        className={classes.textField}
-                        fullWidth
-                        label="Sua senha"
-                        name="password"
-                        type="password"
-                        variant="outlined"
-                    />
-                    <Button
-                        className={classes.signInButton}
-                        color="primary"
-                        fullWidth
-                        size="large"
-                        type="submit"
-                        variant="contained"
-                    >
-                        Entrar
-                    </Button>
-                </form>
+                <Formik
+                    initialValues={{ email: '', senha: '' }}
+                    validationSchema={validaCampos}
+                >
+                    {() => (
+                        <FormikForm className={classes.form}>
+                            <Typography
+                                align="center"
+                                className={classes.title}
+                                color="textSecondary"
+                                variant="h2"
+                            >
+                                Seja bem vindo!
+                            </Typography>
+                            <div>
+                                <Field
+                                    className={classes.textField}
+                                    fullWidth
+                                    label="Seu email"
+                                    name="email"
+                                    type="text"
+                                    as={TextField}
+                                    variant="outlined"
+                                />
+                                <ErrorMessage component="span" name="email" />
+                            </div>
+
+                            <div>
+                                <Field
+                                    className={classes.textField}
+                                    fullWidth
+                                    label="Sua senha"
+                                    name="senha"
+                                    type="password"
+                                    as={TextField}
+                                    variant="outlined"
+                                />
+                                <ErrorMessage component="span" name="senha" />
+                            </div>
+
+                            <Button
+                                className={classes.signInButton}
+                                color="primary"
+                                fullWidth
+                                size="large"
+                                type="submit"
+                                variant="contained"
+                            >
+                                Entrar
+                            </Button>
+                        </FormikForm>
+                    )}
+                </Formik>
             </div>
         </div>
     );
